@@ -1,8 +1,10 @@
 local Usernames = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/Access/VexHub/Usernames"))()
 local Player = game:GetService("Players").LocalPlayer
+local Authorized = false
 
 for Names, _ in Usernames do
   if Player.Name == Names then
+    Authorized = true
     local TweenService = game:GetService("TweenService")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Table"))()
     local Table = getgenv().Table
@@ -26,4 +28,9 @@ for Names, _ in Usernames do
     TweenService:Create(OpenButton.UIStroke, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Transparency = 0.7}):Play()
     TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()
   end
+end
+wait()
+
+if Authorized == false then
+  Player:Kick("\nYou are unauthorized to use this script!")
 end
