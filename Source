@@ -1,0 +1,29 @@
+local Usernames = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/Access/VexHub/Usernames"))()
+local Player = game:GetService("Players").LocalPlayer
+
+for Names, _ in Usernames do
+  if Player.Name == Names then
+    local TweenService = game:GetService("TweenService")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Table"))()
+    local Table = getgenv().Table
+    local AnimationSpeed = Table.GuiSettings.AnimationSpeed
+    local AnimationEasingStyle = Table.GuiSettings.EasingStyle
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/CoreFrame"))()
+    local AnimationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/AnimationLibrary"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Home"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/TabsLoader"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LocalPlayer"))()
+    AnimationLibrary.AppearBackground()
+    AnimationLibrary.AppearCoreInteractions()
+    wait(Table.GuiSettings.AnimationSpeed)
+    AnimationLibrary.AppearTab("Home")
+    Table.GuiStatus.ActivePage = "Home"
+    Table.GuiStatus.IsVisible = true
+    local OpenButton = game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame.OpenButton
+    OpenButton.Visible = true
+    TweenService:Create(OpenButton, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {BackgroundTransparency = 0.5}):Play()
+    TweenService:Create(OpenButton.UIScale, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Scale = 1}):Play()
+    TweenService:Create(OpenButton.UIStroke, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Transparency = 0.7}):Play()
+    TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()
+  end
+end
