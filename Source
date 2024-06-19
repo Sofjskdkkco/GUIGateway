@@ -15,6 +15,7 @@ for Names, _ in Usernames do
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Home"))()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/TabsLoader"))()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LocalPlayer"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LoadString"))()
     AnimationLibrary.AppearBackground()
     AnimationLibrary.AppearCoreInteractions()
     wait(Table.GuiSettings.AnimationSpeed)
