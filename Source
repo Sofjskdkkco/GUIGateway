@@ -1,24 +1,35 @@
 local Usernames = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/Access/VexHub/Usernames"))()
 local Player = game:GetService("Players").LocalPlayer
 local Authorized = false
+local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
+Message:Visible(true)
 
 for Names, _ in Usernames do
   if Player.Name == Names then
     Authorized = true
     local TweenService = game:GetService("TweenService")
+    Message:Output("Loading Table...")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Table"))()
     local Table = getgenv().Table
     local AnimationSpeed = Table.GuiSettings.AnimationSpeed
     local AnimationEasingStyle = Table.GuiSettings.EasingStyle
+    Message:Output("Loading CoreFrame...")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/CoreFrame"))()
     local AnimationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/AnimationLibrary"))()
+    Message:Output("Loading Home...")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Home"))()
+    Message:Output("Loading Tabs...")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/TabsLoader"))()
+    wait()
+    Message:Output("Loading LocalPlayer...")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LocalPlayer"))()
+    Message:Output("Loading LoadString...")
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LoadString"))()
+    Message:Output("VexHub loaded!")
     AnimationLibrary.AppearBackground()
     AnimationLibrary.AppearCoreInteractions()
     wait(Table.GuiSettings.AnimationSpeed)
+    Message:Visible(false)
     AnimationLibrary.AppearTab("Home")
     Table.GuiStatus.ActivePage = "Home"
     Table.GuiStatus.IsVisible = true
