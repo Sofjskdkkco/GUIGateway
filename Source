@@ -4,28 +4,76 @@ local Authorized = false
 local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
 Message:Visible(true)
 
+local function CheckIfSuccess(Success, Error)
+  if Success then
+    Message:Success("Loaded!")
+  else
+    Message:Error("Something went wrong while executing VexHub!")
+    Message:Error(Error)
+  end
+end
+
 for Names, _ in Usernames do
   if Player.Name == Names then
     Authorized = true
     local TweenService = game:GetService("TweenService")
     Message:Output("Loading Table...")
+    local Success, Error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Table"))()
+    end)
+
+    CheckIfSuccess(Success, Error)
+
     local Table = getgenv().Table
     local AnimationSpeed = Table.GuiSettings.AnimationSpeed
     local AnimationEasingStyle = Table.GuiSettings.EasingStyle
     Message:Output("Loading CoreFrame...")
+    local Success, Error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/CoreFrame"))()
-    local AnimationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/AnimationLibrary"))()
+    end)
+
+    CheckIfSuccess(Success, Error)
+
+    Message:Output("Loading AnimationLibrary...")
+    local AnimationLibrary = nil
+    local Success, Error = pcall(function()
+    AnimationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/AnimationLibrary"))()
+    end)
+
+    CheckIfSuccess(Success, Error)
+
     Message:Output("Loading Home...")
+
+    local Success, Error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Home"))()
+    end)
+
+    CheckIfSuccess(Success, Error)
+
     Message:Output("Loading Tabs...")
+    local Success, Error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/TabsLoader"))()
+    end)
+
+    CheckIfSuccess(Success, Error)
+
     wait()
     Message:Output("Loading LocalPlayer...")
+
+    local Success, Error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LocalPlayer"))()
+    end)
+
+    CheckIfSuccess(Success, Error)
+
     Message:Output("Loading LoadString...")
+    local Success, Error = pcall(function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/LoadString"))()
-    Message:Output("VexHub loaded!")
+    end)
+
+    CheckIfSuccess(Success, Error)
+
+    Message:Success("VexHub loaded!")
     AnimationLibrary.AppearBackground()
     AnimationLibrary.AppearCoreInteractions()
     wait(Table.GuiSettings.AnimationSpeed)
