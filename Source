@@ -85,7 +85,7 @@ for Names, _ in Usernames do
 				if isfolder("VexHub") then
 					coroutine.wrap(function()
 						if isfile("VexHub/Settings.vex") then
-							local SettingsTable = JSon:Encode(readfile("VexHub/Settings.vex"))
+							local SettingsTable = JSon:Decode(readfile("VexHub/Settings.vex"))
 
 							GuiSettings.Wallpaper = SettingsTable.Wallpaper
 							GuiSettings.Notifications = SettingsTable.Notifications
