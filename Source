@@ -24,6 +24,44 @@ for Names, _ in Usernames do
 
     CheckIfSuccess(Success, Error)
 
+    getgenv().MakeVexFolder = function()
+    	function JSon:Encode(Table)
+    		return game:GetService("HttpService"):JSONEncode(Table)
+    	end
+    
+    	function JSon:Decode(Table)
+    		return game:GetService("HttpService"):JSONDecode(Table)
+    	end
+
+      if isfolder("VexHub") then
+        delfolder("VexHub")
+      end
+
+      makefolder("VexHub")
+      makefolder("VexHub/Plugins")
+      makefolder("VexHub/SavedScripts")
+
+      local SettingsTable = {
+        Wallpaper = 11926598891,
+        Notifications = true,
+        GuiBackgroundColor = "255, 255, 255",
+        GuiScale = 1,
+        AnimationSpeed = 0.6,
+        EasingStyle = "Quart",
+        GuiFont = {
+          Regular = "Montserrat",
+          Medium = "MontserratMedium",
+          Bold = "MontserratBold",
+        },
+        BackgroundGradientColor = "200, 200, 200",
+        UIStrokeColor = "255, 255, 255",
+        NotificationSound = 3398620867,
+        NotificationVolume = 0.5,
+      }
+    
+    	writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
+    end
+
     getgenv().LoadVexFile = function()
     	local JSon = {}
     	local GuiSettings = getgenv().Table.GuiSettings
@@ -57,25 +95,7 @@ for Names, _ in Usernames do
     				GuiSettings.NotificationSound = SettingsTable.NotificationSound
     				GuiSettings.NotificationVolume = SettingsTable.NotificationVolume
     			else
-    				local SettingsTable = {
-    					Wallpaper = 11926598891,
-    					Notifications = true,
-    					GuiBackgroundColor = "255, 255, 255",
-    					GuiScale = 1,
-    					AnimationSpeed = 0.6,
-    					EasingStyle = "Quart",
-    					GuiFont = {
-    						Regular = "Montserrat",
-    						Medium = "MontserratMedium",
-    						Bold = "MontserratBold",
-    					},
-    					BackgroundGradientColor = "200, 200, 200",
-    					UIStrokeColor = "255, 255, 255",
-    					NotificationSound = 3398620867,
-    					NotificationVolume = 0.5,
-    				}
-    
-    				writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
+            MakeVexFolder()
     			end
     		end)()
     
@@ -83,28 +103,108 @@ for Names, _ in Usernames do
     			if isfolder("VexHub/Plugins") then
     				for _, PluginName in listfiles("VexHub/Plugins") do
     					if string.find(string.lower(tostring(PluginName)), ".vexp") then
-    						table.insert(Plugins, tostring(readfile(PluginName)))
+    						table.insert(Plugins, JSON:Decode(readfile(PluginName)))
     					end
     				end
     			else
-    				makefolder("VexHub/Plugins")
+    				MakeVexFolder()
     			end
     		end)
     
     		coroutine.wrap(function()
     			if isfolder("VexHub/SavedScripts") then
-    				for _, PluginName in listfiles("VexHub/SavedScripts") do
-    					if string.find(string.lower(tostring(PluginName)), ".lua") then
-    						table.insert(SavedScripts, tostring(readfile(PluginName)))
+    				for _, ScriptName in listfiles("VexHub/SavedScripts") do
+    					if string.find(string.lower(tostring(ScriptName)), ".lua") then
+                local function IgnorePathAndExtension(String)
+                  local _1 = string.gsub(String, "VexHub/SavedScripts/", "")
+                  return string.gsub(_1, ".lua", "")
+                end
+
+                local ScriptTable = {
+                  ScriptName = IgnorePathAndExtension(ScriptName),
+                  Script = tostring(readfile(ScriptName)),
+                }
+
+    						table.insert(SavedScripts, ScriptTable)
     					end
     				end
     			else
-    				makefolder("VexHub/SavedScripts")
+    				MakeVexFolder()
     			end
     		end)
     	else
-    		makefolder("VexHub")
-    		LoadFile()
+    		MakeVexFolder()
+    		LoadVexFile()
+    	end
+    end
+
+    getgenv().SaveVexFile = function()
+    	local JSon = {}
+    	local GuiSettings = getgenv().Table.GuiSettings
+    	local Plugins = getgenv().Table.Plugins
+    	local SavedScripts = getgenv().Table.SavedScripts
+    
+    	function JSon:Encode(Table)
+    		return game:GetService("HttpService"):JSONEncode(Table)
+    	end
+    
+    	function JSon:Decode(Table)
+    		return game:GetService("HttpService"):JSONDecode(Table)
+    	end
+    
+    	if isfolder("VexHub") then
+    		coroutine.wrap(function()
+    			if isfile("VexHub/Settings.vex") then
+    				local SettingsTable = {
+    					Wallpaper = GuiSettings.Wallpaper,
+    					Notifications = GuiSettings.Notifications,
+    					GuiBackgroundColor = GuiSettings.GuiBackgroundColor,
+    					GuiScale = GuiSettings.GuiScale,
+    					AnimationSpeed = GuiSettings.AnimationSpeed,
+    					EasingStyle = GuiSettings.EasingStyle,
+    					GuiFont = {
+    						Regular = GuiSettings.GuiFont.Regular,
+    						Medium = GuiSettings.GuiFont.Medium,
+    						Bold = GuiSettings.GuiFont.Bold,
+    					},
+    					BackgroundGradientColor = GuiSettings.BackgroundGradientColor,
+    					UIStrokeColor = GuiSettings.UIStrokeColor,
+    					NotificationSound = GuiSettings.NotificationSound,
+    					NotificationVolume = GuiSettings.NotificationVolume,
+    				}
+    				
+    				writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
+    			else
+    				MakeVexFolder()
+    			end
+    		end)()
+    
+    		coroutine.wrap(function()
+    			if isfolder("VexHub/Plugins") then
+    				for _, Plugin in Plugins do		
+    					if isfile("VexHub/Plugins/"..Plugin.PluginName) ~= true then
+    						writefile("VexHub/Plugins/"..Plugin.PluginName..".vexp", JSon:Encode(Plugin))
+    					end
+    				end
+    			else
+    				MakeVexFolder()
+    			end
+    		end)
+    
+    		coroutine.wrap(function()
+    			if isfolder("VexHub/SavedScripts") then
+    				for _, Script in SavedScripts do
+    					if isfile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName) ~= true then
+    						writefile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua", tostring(Script.ScriptTable.Script))
+    					end
+    				end
+    			else
+    				MakeVexFolder()
+    			end
+    		end)
+    	else
+    		MakeVexFolder()
+    		SaveVexFile()
     	end
     end
 
