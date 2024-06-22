@@ -24,6 +24,92 @@ for Names, _ in Usernames do
 
     CheckIfSuccess(Success, Error)
 
+    getgenv().LoadVexFile = function()
+    	local JSon = {}
+    	local GuiSettings = getgenv().Table.GuiSettings
+    	local Plugins = getgenv().Table.Plugins
+    	local SavedScripts = getgenv().Table.SavedScripts
+    
+    	function JSon:Encode(Table)
+    		return game:GetService("HttpService"):JSONEncode(Table)
+    	end
+    
+    	function JSon:Decode(Table)
+    		return game:GetService("HttpService"):JSONDecode(Table)
+    	end
+    
+    	if isfolder("VexHub") then
+    		coroutine.wrap(function()
+    			if isfile("VexHub/Settings.vex") then
+    				local SettingsTable = JSon:Encode(readfile("VexHub/Settings.vex"))
+    
+    				GuiSettings.Wallpaper = SettingsTable.Wallpaper
+    				GuiSettings.Notifications = SettingsTable.Notifications
+    				GuiSettings.GuiBackgroundColor = SettingsTable.GuiBackgroundColor
+    				GuiSettings.GuiScale = SettingsTable.GuiScale
+    				GuiSettings.AnimationSpeed = SettingsTable.AnimationSpeed
+    				GuiSettings.EasingStyle = SettingsTable.EasingStyle
+    				GuiSettings.GuiFont.Regular = SettingsTable.GuiFont.Regular
+    				GuiSettings.GuiFont.Medium = SettingsTable.GuiFont.Medium
+    				GuiSettings.GuiFont.Bold = SettingsTable.GuiFont.Bold
+    				GuiSettings.BackgroundGradientColor = SettingsTable.BackgroundGradientColor
+    				GuiSettings.UIStrokeColor = SettingsTable.UIStrokeColor
+    				GuiSettings.NotificationSound = SettingsTable.NotificationSound
+    				GuiSettings.NotificationVolume = SettingsTable.NotificationVolume
+    			else
+    				local SettingsTable = {
+    					Wallpaper = 11926598891,
+    					Notifications = true,
+    					GuiBackgroundColor = "255, 255, 255",
+    					GuiScale = 1,
+    					AnimationSpeed = 0.6,
+    					EasingStyle = "Quart",
+    					GuiFont = {
+    						Regular = "Montserrat",
+    						Medium = "MontserratMedium",
+    						Bold = "MontserratBold",
+    					},
+    					BackgroundGradientColor = "200, 200, 200",
+    					UIStrokeColor = "255, 255, 255",
+    					NotificationSound = 3398620867,
+    					NotificationVolume = 0.5,
+    				}
+    
+    				writefile("VexHub/Settings.vex", JSon:Decode(SettingsTable))
+    			end
+    		end)()
+    
+    		coroutine.wrap(function()
+    			if isfolder("VexHub/Plugins") then
+    				for _, PluginName in listfiles("VexHub/Plugins") do
+    					if string.find(string.lower(tostring(PluginName)), ".vexp") then
+    						table.insert(Plugins, tostring(readfile(PluginName)))
+    					end
+    				end
+    			else
+    				makefolder("VexHub/Plugins")
+    			end
+    		end)
+    
+    		coroutine.wrap(function()
+    			if isfolder("VexHub/SavedScripts") then
+    				for _, PluginName in listfiles("VexHub/SavedScripts") do
+    					if string.find(string.lower(tostring(PluginName)), ".lua") then
+    						table.insert(SavedScripts, tostring(readfile(PluginName)))
+    					end
+    				end
+    			else
+    				makefolder("VexHub/SavedScripts")
+    			end
+    		end)
+    	else
+    		makefolder("VexHub")
+    		LoadFile()
+    	end
+    end
+
+    LoadVexFile()
+
     local Table = getgenv().Table
     local AnimationSpeed = Table.GuiSettings.AnimationSpeed
     local AnimationEasingStyle = Table.GuiSettings.EasingStyle
