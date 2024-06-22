@@ -75,7 +75,7 @@ for Names, _ in Usernames do
     					NotificationVolume = 0.5,
     				}
     
-    				writefile("VexHub/Settings.vex", JSon:Decode(SettingsTable))
+    				writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
     			end
     		end)()
     
