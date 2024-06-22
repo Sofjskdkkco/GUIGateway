@@ -1,6 +1,7 @@
 local Usernames = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/Access/VexHub/Usernames"))()
 local Player = game:GetService("Players").LocalPlayer
 local Authorized = false
+local Errors = 0
 local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
 Message:Visible(true)
 
@@ -10,6 +11,7 @@ local function CheckIfSuccess(Success, Error)
 	else
 		Message:Error("Something went wrong while executing VexHub!")
 		Message:Error(Error)
+		Errors += 1
 	end
 end
 
@@ -266,7 +268,12 @@ for Names, _ in Usernames do
 
 		CheckIfSuccess(Success, Error)
 
-		Message:Success("VexHub loaded!")
+		if Errors == 0 then
+			Message:Success("VexHub loaded!")
+		else
+			Message:Error("FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!")
+		end
+
 		AnimationLibrary.AppearBackground()
 		AnimationLibrary.AppearCoreInteractions()
 		wait(Table.GuiSettings.AnimationSpeed)
