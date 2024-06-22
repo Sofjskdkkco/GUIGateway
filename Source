@@ -69,148 +69,168 @@ for Names, _ in Usernames do
 			end
 
 			getgenv().LoadVexFile = function()
-				local JSon = {}
-				local GuiSettings = getgenv().Table.GuiSettings
-				local Plugins = getgenv().Table.Plugins
-				local SavedScripts = getgenv().Table.SavedScripts
+				local Success, Error = pcall(function()
+					local JSon = {}
+					local GuiSettings = getgenv().Table.GuiSettings
+					local Plugins = getgenv().Table.Plugins
+					local SavedScripts = getgenv().Table.SavedScripts
 
-				function JSon:Encode(Table)
-					return game:GetService("HttpService"):JSONEncode(Table)
-				end
+					function JSon:Encode(Table)
+						return game:GetService("HttpService"):JSONEncode(Table)
+					end
 
-				function JSon:Decode(Table)
-					return game:GetService("HttpService"):JSONDecode(Table)
-				end
+					function JSon:Decode(Table)
+						return game:GetService("HttpService"):JSONDecode(Table)
+					end
 
-				if isfolder("VexHub") then
-					coroutine.wrap(function()
-						if isfile("VexHub/Settings.vex") then
-							local SettingsTable = JSon:Decode(readfile("VexHub/Settings.vex"))
+					if isfolder("VexHub") then
+						coroutine.wrap(function()
+							if isfile("VexHub/Settings.vex") then
+								local SettingsTable = JSon:Decode(readfile("VexHub/Settings.vex"))
 
-							GuiSettings.Wallpaper = SettingsTable.Wallpaper
-							GuiSettings.Notifications = SettingsTable.Notifications
-							GuiSettings.GuiBackgroundColor = SettingsTable.GuiBackgroundColor
-							GuiSettings.GuiScale = SettingsTable.GuiScale
-							GuiSettings.AnimationSpeed = SettingsTable.AnimationSpeed
-							GuiSettings.EasingStyle = SettingsTable.EasingStyle
-							GuiSettings.GuiFont.Regular = SettingsTable.GuiFont.Regular
-							GuiSettings.GuiFont.Medium = SettingsTable.GuiFont.Medium
-							GuiSettings.GuiFont.Bold = SettingsTable.GuiFont.Bold
-							GuiSettings.BackgroundGradientColor = SettingsTable.BackgroundGradientColor
-							GuiSettings.UIStrokeColor = SettingsTable.UIStrokeColor
-							GuiSettings.NotificationSound = SettingsTable.NotificationSound
-							GuiSettings.NotificationVolume = SettingsTable.NotificationVolume
-						else
-							MakeVexFolder()
-						end
-					end)()
-
-					coroutine.wrap(function()
-						if isfolder("VexHub/Plugins") then
-							for _, PluginName in listfiles("VexHub/Plugins") do
-								if string.find(string.lower(tostring(PluginName)), ".vexp") then
-									table.insert(Plugins, JSON:Decode(readfile(PluginName)))
-								end
+								GuiSettings.Wallpaper = SettingsTable.Wallpaper
+								GuiSettings.Notifications = SettingsTable.Notifications
+								GuiSettings.GuiBackgroundColor = SettingsTable.GuiBackgroundColor
+								GuiSettings.GuiScale = SettingsTable.GuiScale
+								GuiSettings.AnimationSpeed = SettingsTable.AnimationSpeed
+								GuiSettings.EasingStyle = SettingsTable.EasingStyle
+								GuiSettings.GuiFont.Regular = SettingsTable.GuiFont.Regular
+								GuiSettings.GuiFont.Medium = SettingsTable.GuiFont.Medium
+								GuiSettings.GuiFont.Bold = SettingsTable.GuiFont.Bold
+								GuiSettings.BackgroundGradientColor = SettingsTable.BackgroundGradientColor
+								GuiSettings.UIStrokeColor = SettingsTable.UIStrokeColor
+								GuiSettings.NotificationSound = SettingsTable.NotificationSound
+								GuiSettings.NotificationVolume = SettingsTable.NotificationVolume
+							else
+								MakeVexFolder()
 							end
-						else
-							MakeVexFolder()
-						end
-					end)
+						end)()
 
-					coroutine.wrap(function()
-						if isfolder("VexHub/SavedScripts") then
-							for _, ScriptName in listfiles("VexHub/SavedScripts") do
-								if string.find(string.lower(tostring(ScriptName)), ".lua") then
-									local function IgnorePathAndExtension(String)
-										local _1 = string.gsub(String, "VexHub/SavedScripts/", "")
-										return string.gsub(_1, ".lua", "")
+						coroutine.wrap(function()
+							if isfolder("VexHub/Plugins") then
+								for _, PluginName in listfiles("VexHub/Plugins") do
+									if string.find(string.lower(tostring(PluginName)), ".vexp") then
+										table.insert(Plugins, JSON:Decode(readfile(PluginName)))
 									end
-
-									local ScriptTable = {
-										ScriptName = IgnorePathAndExtension(ScriptName),
-										Script = tostring(readfile(ScriptName)),
-									}
-
-									table.insert(SavedScripts, ScriptTable)
 								end
+							else
+								MakeVexFolder()
 							end
-						else
-							MakeVexFolder()
-						end
-					end)
+						end)
+
+						coroutine.wrap(function()
+							if isfolder("VexHub/SavedScripts") then
+								for _, ScriptName in listfiles("VexHub/SavedScripts") do
+									if string.find(string.lower(tostring(ScriptName)), ".lua") then
+										local function IgnorePathAndExtension(String)
+											local _1 = string.gsub(String, "VexHub/SavedScripts/", "")
+											return string.gsub(_1, ".lua", "")
+										end
+
+										local ScriptTable = {
+											ScriptName = IgnorePathAndExtension(ScriptName),
+											Script = tostring(readfile(ScriptName)),
+										}
+
+										table.insert(SavedScripts, ScriptTable)
+									end
+								end
+							else
+								MakeVexFolder()
+							end
+						end)
+					else
+						MakeVexFolder()
+						LoadVexFile()
+					end
+				end)
+				
+				if Success then
+					Message:Success("Table manipulated!")
 				else
-					MakeVexFolder()
-					LoadVexFile()
+					Message:Visible(true)
+					Message:Error("Failed to manipulate table! Your settings was not loaded!")
+					Message:Error(Error)
 				end
 			end
 
 			getgenv().SaveVexFile = function()
-				local JSon = {}
-				local GuiSettings = getgenv().Table.GuiSettings
-				local Plugins = getgenv().Table.Plugins
-				local SavedScripts = getgenv().Table.SavedScripts
+				local Success, Error = pcall(function()
+					local JSon = {}
+					local GuiSettings = getgenv().Table.GuiSettings
+					local Plugins = getgenv().Table.Plugins
+					local SavedScripts = getgenv().Table.SavedScripts
 
-				function JSon:Encode(Table)
-					return game:GetService("HttpService"):JSONEncode(Table)
-				end
+					function JSon:Encode(Table)
+						return game:GetService("HttpService"):JSONEncode(Table)
+					end
 
-				function JSon:Decode(Table)
-					return game:GetService("HttpService"):JSONDecode(Table)
-				end
+					function JSon:Decode(Table)
+						return game:GetService("HttpService"):JSONDecode(Table)
+					end
 
-				if isfolder("VexHub") then
-					coroutine.wrap(function()
-						if isfile("VexHub/Settings.vex") then
-							local SettingsTable = {
-								Wallpaper = GuiSettings.Wallpaper,
-								Notifications = GuiSettings.Notifications,
-								GuiBackgroundColor = GuiSettings.GuiBackgroundColor,
-								GuiScale = GuiSettings.GuiScale,
-								AnimationSpeed = GuiSettings.AnimationSpeed,
-								EasingStyle = GuiSettings.EasingStyle,
-								GuiFont = {
-									Regular = GuiSettings.GuiFont.Regular,
-									Medium = GuiSettings.GuiFont.Medium,
-									Bold = GuiSettings.GuiFont.Bold,
-								},
-								BackgroundGradientColor = GuiSettings.BackgroundGradientColor,
-								UIStrokeColor = GuiSettings.UIStrokeColor,
-								NotificationSound = GuiSettings.NotificationSound,
-								NotificationVolume = GuiSettings.NotificationVolume,
-							}
+					if isfolder("VexHub") then
+						coroutine.wrap(function()
+							if isfile("VexHub/Settings.vex") then
+								local SettingsTable = {
+									Wallpaper = GuiSettings.Wallpaper,
+									Notifications = GuiSettings.Notifications,
+									GuiBackgroundColor = GuiSettings.GuiBackgroundColor,
+									GuiScale = GuiSettings.GuiScale,
+									AnimationSpeed = GuiSettings.AnimationSpeed,
+									EasingStyle = GuiSettings.EasingStyle,
+									GuiFont = {
+										Regular = GuiSettings.GuiFont.Regular,
+										Medium = GuiSettings.GuiFont.Medium,
+										Bold = GuiSettings.GuiFont.Bold,
+									},
+									BackgroundGradientColor = GuiSettings.BackgroundGradientColor,
+									UIStrokeColor = GuiSettings.UIStrokeColor,
+									NotificationSound = GuiSettings.NotificationSound,
+									NotificationVolume = GuiSettings.NotificationVolume,
+								}
 
-							writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
-						else
-							MakeVexFolder()
-						end
-					end)()
-
-					coroutine.wrap(function()
-						if isfolder("VexHub/Plugins") then
-							for _, Plugin in Plugins do		
-								if isfile("VexHub/Plugins/"..Plugin.PluginName) ~= true then
-									writefile("VexHub/Plugins/"..Plugin.PluginName..".vexp", JSon:Encode(Plugin))
-								end
+								writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
+							else
+								MakeVexFolder()
 							end
-						else
-							MakeVexFolder()
-						end
-					end)
+						end)()
 
-					coroutine.wrap(function()
-						if isfolder("VexHub/SavedScripts") then
-							for _, Script in SavedScripts do
-								if isfile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName) ~= true then
-									writefile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua", tostring(Script.ScriptTable.Script))
+						coroutine.wrap(function()
+							if isfolder("VexHub/Plugins") then
+								for _, Plugin in Plugins do		
+									if isfile("VexHub/Plugins/"..Plugin.PluginName) ~= true then
+										writefile("VexHub/Plugins/"..Plugin.PluginName..".vexp", JSon:Encode(Plugin))
+									end
 								end
+							else
+								MakeVexFolder()
 							end
-						else
-							MakeVexFolder()
-						end
-					end)
+						end)
+
+						coroutine.wrap(function()
+							if isfolder("VexHub/SavedScripts") then
+								for _, Script in SavedScripts do
+									if isfile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName) ~= true then
+										writefile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua", tostring(Script.ScriptTable.Script))
+									end
+								end
+							else
+								MakeVexFolder()
+							end
+						end)
+					else
+						MakeVexFolder()
+						SaveVexFile()
+					end
+				end)
+
+				if Success then
+					Message:Success("Table saved!")
 				else
-					MakeVexFolder()
-					SaveVexFile()
+					Message:Visible(true)
+					Message:Error("Failed to save table! Your settings was not saved!")
+					Message:Error(Error)
 				end
 			end
 
@@ -270,23 +290,23 @@ for Names, _ in Usernames do
 
 		if Errors == 0 then
 			Message:Success("VexHub loaded!")
+			
+			AnimationLibrary.AppearBackground()
+			AnimationLibrary.AppearCoreInteractions()
+			wait(Table.GuiSettings.AnimationSpeed)
+			Message:Visible(false)
+			AnimationLibrary.AppearTab("Home")
+			Table.GuiStatus.ActivePage = "Home"
+			Table.GuiStatus.IsVisible = true
+			local OpenButton = game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame.OpenButton
+			OpenButton.Visible = true
+			TweenService:Create(OpenButton, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {BackgroundTransparency = 0.5}):Play()
+			TweenService:Create(OpenButton.UIScale, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Scale = 1}):Play()
+			TweenService:Create(OpenButton.UIStroke, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Transparency = 0.7}):Play()
+			TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()
 		else
 			Message:Error('FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!')
 		end
-
-		AnimationLibrary.AppearBackground()
-		AnimationLibrary.AppearCoreInteractions()
-		wait(Table.GuiSettings.AnimationSpeed)
-		Message:Visible(false)
-		AnimationLibrary.AppearTab("Home")
-		Table.GuiStatus.ActivePage = "Home"
-		Table.GuiStatus.IsVisible = true
-		local OpenButton = game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame.OpenButton
-		OpenButton.Visible = true
-		TweenService:Create(OpenButton, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {BackgroundTransparency = 0.5}):Play()
-		TweenService:Create(OpenButton.UIScale, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Scale = 1}):Play()
-		TweenService:Create(OpenButton.UIStroke, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Transparency = 0.7}):Play()
-		TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()
 	end
 end
 wait()
