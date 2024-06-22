@@ -211,7 +211,7 @@ for Names, _ in Usernames do
 						coroutine.wrap(function()
 							if isfolder("VexHub/SavedScripts") then
 								for _, Script in SavedScripts do
-									if isfile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName) ~= true then
+									if isfile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua") ~= true then
 										writefile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua", tostring(Script.ScriptTable.Script))
 									end
 								end
@@ -233,11 +233,9 @@ for Names, _ in Usernames do
 					Message:Error(Error)
 				end
 			end
-
-			LoadVexFile()
 		end)
 
-		CheckIfSuccess(Success, Error)
+		LoadVexFile()
 
 		local Table = getgenv().Table
 		local AnimationSpeed = Table.GuiSettings.AnimationSpeed
