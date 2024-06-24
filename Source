@@ -208,23 +208,16 @@ for Names, _ in Usernames do
 						end)
 
 						coroutine.wrap(function()
+							print("working 1")
 							if isfolder("VexHub/SavedScripts") then
-								local TestTable = {
-									ScriptName = "hello",
-									Script = "kys",
-								}
-
-								table.insert(getgenv().Table.SavedScripts, TestTable)
-
-								for i, v in getgenv().Table.SavedScripts do
-									print(i)
-								end
-
+								print("working 2")
 								for TableNumber, _ in getgenv().Table.SavedScripts do
 									Message:Output(TableNumber)
 									writefile("VexHub/SavedScripts/"..SavedScripts[TableNumber].ScriptName..".lua", tostring(SavedScripts[TableNumber].Script))
 								end
+							print("working 3")
 							else
+								print("working 4")
 								MakeVexFolder()
 							end
 						end)
