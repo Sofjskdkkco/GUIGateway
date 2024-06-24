@@ -215,6 +215,11 @@ for Names, _ in Usernames do
 								}
 
 								table.insert(getgenv().Table.SavedScripts, TestTable)
+
+								for i, v in getgenv().Table.SavedScripts do
+									print(i)
+								end
+
 								for TableNumber, _ in getgenv().Table.SavedScripts do
 									Message:Output(TableNumber)
 									writefile("VexHub/SavedScripts/"..SavedScripts[TableNumber].ScriptName..".lua", tostring(SavedScripts[TableNumber].Script))
