@@ -159,7 +159,6 @@ for Names, _ in Usernames do
 					local JSon = {}
 					local GuiSettings = getgenv().Table.GuiSettings
 					local Plugins = getgenv().Table.Plugins
-					local SavedScripts = getgenv().Table.SavedScripts
 
 					function JSon:Encode(Table)
 						return game:GetService("HttpService"):JSONEncode(Table)
@@ -210,6 +209,8 @@ for Names, _ in Usernames do
 
 						coroutine.wrap(function()
 							if isfolder("VexHub/SavedScripts") then
+								local SavedScripts = getgenv().Table.SavedScripts
+
 								for TableNumber, _ in SavedScripts do
 									Message:Output(TableNumber)
 									writefile("VexHub/SavedScripts/"..SavedScripts[TableNumber].ScriptName..".lua", tostring(SavedScripts[TableNumber].Script))
