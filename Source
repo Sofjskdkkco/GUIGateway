@@ -210,9 +210,24 @@ for Names, _ in Usernames do
 
 						coroutine.wrap(function()
 							if isfolder("VexHub/SavedScripts") then
-								for _, Script in SavedScripts do
-									if isfile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua") ~= true then
-										writefile("VexHub/SavedScripts/"..Script.ScriptTable.ScriptName..".lua", tostring(Script.ScriptTable.Script))
+								for _, TableInsides in SavedScripts do
+									local TableScriptName = ""
+									local TableScript = ""
+
+									for i, v in TableInsides do
+										if i == "Script" then
+											TableScript = v
+										elseif i == "ScriptName" do
+											TableScriptName = v
+										end
+									end
+									wait()
+
+									if isfile("VexHub/SavedScripts/"..TableScriptName..".lua") ~= true then
+										Message:Output("Table Contents":)
+										Message:Output(TableScriptName)
+										Message:Output(TableScript)
+										writefile("VexHub/SavedScripts/"..TableScriptName..".lua", tostring(TableScript))
 									end
 								end
 							else
