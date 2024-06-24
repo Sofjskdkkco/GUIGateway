@@ -144,7 +144,7 @@ for Names, _ in Usernames do
 						LoadVexFile()
 					end
 				end)
-				
+
 				if Success then
 					Message:Success("Table manipulated!")
 				else
@@ -217,14 +217,14 @@ for Names, _ in Usernames do
 									for i, v in TableInsides do
 										if i == "Script" then
 											TableScript = v
-										elseif i == "ScriptName" do
-											TableScriptName = v
-										end
+										elseif i == "ScriptName" then
+												TableScriptName = v
+											end
 									end
 									wait()
 
 									if isfile("VexHub/SavedScripts/"..TableScriptName..".lua") ~= true then
-										Message:Output("Table Contents":)
+										Message:Output("Table Contents:")
 										Message:Output(TableScriptName)
 										Message:Output(TableScript)
 										writefile("VexHub/SavedScripts/"..TableScriptName..".lua", tostring(TableScript))
@@ -303,7 +303,7 @@ for Names, _ in Usernames do
 
 		if Errors == 0 then
 			Message:Success("VexHub loaded!")
-			
+
 			AnimationLibrary.AppearBackground()
 			AnimationLibrary.AppearCoreInteractions()
 			wait(Table.GuiSettings.AnimationSpeed)
