@@ -75,10 +75,10 @@ for Names, _ in Usernames do
 			getgenv().LoadVexFile = function()
 				local Success, Error = pcall(function()
 					local JSon = {}
-					local GuiSettings = getgenv().Table.GuiSettings
-					local Plugins = getgenv().Table.Plugins
-					local SavedScripts = getgenv().Table.SavedScripts
-					local Favorites = getgenv().Table.Favorites
+					local GuiSettings = _G.Table.GuiSettings
+					local Plugins = _G.Table.Plugins
+					local SavedScripts = _G.Table.SavedScripts
+					local Favorites = _G.Table.Favorites
 
 					function JSon:Encode(Table)
 						return game:GetService("HttpService"):JSONEncode(Table)
@@ -174,10 +174,10 @@ for Names, _ in Usernames do
 			getgenv().SaveVexFile = function()
 				local Success, Error = pcall(function()
 					local JSon = {}
-					local GuiSettings = getgenv().Table.GuiSettings
-					local Plugins = getgenv().Table.Plugins
-					local SavedScripts = getgenv().Table.SavedScripts
-					local Favorites = getgenv().Table.Favorites
+					local GuiSettings = _G.Table.GuiSettings
+					local Plugins = _G.Table.Plugins
+					local SavedScripts = _G.Table.SavedScripts
+					local Favorites = _G.Table.Favorites
 
 					function JSon:Encode(Table)
 						return game:GetService("HttpService"):JSONEncode(Table)
@@ -267,7 +267,7 @@ for Names, _ in Usernames do
 
 		LoadVexFile()
 
-		local Table = getgenv().Table
+		local Table = _G.Table
 		local AnimationSpeed = Table.GuiSettings.AnimationSpeed
 		local AnimationEasingStyle = Table.GuiSettings.EasingStyle
 		Message:Output("Loading CoreFrame...")
