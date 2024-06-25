@@ -66,6 +66,10 @@ for Names, _ in Usernames do
 				}
 
 				writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
+
+				local FavoritesTable = {}
+
+				writefile("VexHub/Favorites.vex", JSon:Encode(FavoritesTable))
 			end
 
 			getgenv().LoadVexFile = function()
@@ -74,6 +78,7 @@ for Names, _ in Usernames do
 					local GuiSettings = getgenv().Table.GuiSettings
 					local Plugins = getgenv().Table.Plugins
 					local SavedScripts = getgenv().Table.SavedScripts
+					local Favorites = getgenv().Table.Favorites
 
 					function JSon:Encode(Table)
 						return game:GetService("HttpService"):JSONEncode(Table)
@@ -101,6 +106,18 @@ for Names, _ in Usernames do
 								GuiSettings.UIStrokeColor = SettingsTable.UIStrokeColor
 								GuiSettings.NotificationSound = SettingsTable.NotificationSound
 								GuiSettings.NotificationVolume = SettingsTable.NotificationVolume
+							else
+								MakeVexFolder()
+							end
+						end)()
+
+						coroutine.wrap(function()
+							if isfile("VexHub/Favorites.vex") then
+								local FavoritesTable = JSon:Decode(readfile("VexHub/Favorites.vex"))
+	
+								for _, ScriptId in FavoritesTable do
+									table.insert(Favorites, ScriptId)
+								end
 							else
 								MakeVexFolder()
 							end
@@ -160,6 +177,7 @@ for Names, _ in Usernames do
 					local GuiSettings = getgenv().Table.GuiSettings
 					local Plugins = getgenv().Table.Plugins
 					local SavedScripts = getgenv().Table.SavedScripts
+					local Favorites = getgenv().Table.Favorites
 
 					function JSon:Encode(Table)
 						return game:GetService("HttpService"):JSONEncode(Table)
@@ -191,6 +209,20 @@ for Names, _ in Usernames do
 								}
 
 								writefile("VexHub/Settings.vex", JSon:Encode(SettingsTable))
+							else
+								MakeVexFolder()
+							end
+						end)()
+
+						coroutine.wrap(function()
+							if isfile("VexHub/Favorites.vex") then
+								local FavoritesTable = {}
+								for _, ScriptId in Favorites do
+									table.insert(FavoritesTable, tonumber(ScriptId))
+								end
+								wait()
+	
+								writefile("VexHub/Favorites.vex", JSon:Encode(FavoritesTable))
 							else
 								MakeVexFolder()
 							end
