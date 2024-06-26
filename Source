@@ -127,7 +127,7 @@ for Names, _ in Usernames do
 							if isfolder("VexHub/Plugins") then
 								for _, PluginName in listfiles("VexHub/Plugins") do
 									if string.find(string.lower(tostring(PluginName)), ".vexp") then
-										local PluginContents = loadstring(readfile("VexHub/Plugins/"..PluginName..".vexp"))()
+										local PluginContents = JSon:Decode(readfile("VexHub/Plugins/"..PluginName..".vexp"))
 										table.insert(Plugins, PluginContents)
 									end
 								end
@@ -224,6 +224,19 @@ for Names, _ in Usernames do
 								wait()
 	
 								writefile("VexHub/Favorites.vex", JSon:Encode(FavoritesTable))
+							else
+								MakeVexFolder()
+							end
+						end)()
+
+						coroutine.wrap(function()
+							if isfolder("VexHub/Plugins") then
+								for TableNumber, _ in Plugins do
+										local PluginContents = Plugins[TableNumber]
+
+										writefile("VexHub/Plugins/"..PluginContents.PluginName..".vexp", JSon:Encode(PluginContents))
+									end
+								end
 							else
 								MakeVexFolder()
 							end
