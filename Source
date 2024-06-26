@@ -127,7 +127,8 @@ for Names, _ in Usernames do
 							if isfolder("VexHub/Plugins") then
 								for _, PluginName in listfiles("VexHub/Plugins") do
 									if string.find(string.lower(tostring(PluginName)), ".vexp") then
-										table.insert(Plugins, JSON:Decode(readfile(PluginName)))
+										local PluginContents = loadstring(readfile("VexHub/Plugins/"..PluginName..".vexp"))()
+										table.insert(Plugins, PluginContents)
 									end
 								end
 							else
