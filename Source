@@ -232,10 +232,9 @@ for Names, _ in Usernames do
 						coroutine.wrap(function()
 							if isfolder("VexHub/Plugins") then
 								for TableNumber, _ in Plugins do
-										local PluginContents = Plugins[TableNumber]
+									local PluginContents = Plugins[TableNumber]
 
-										writefile("VexHub/Plugins/"..PluginContents.PluginName..".vexp", JSon:Encode(PluginContents))
-									end
+									writefile("VexHub/Plugins/"..PluginContents.PluginName..".vexp", JSon:Encode(PluginContents))
 								end
 							else
 								MakeVexFolder()
