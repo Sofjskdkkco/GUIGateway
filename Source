@@ -319,7 +319,13 @@ for Names, _ in Usernames do
 
 		Message:Output("Loading Plugins...")
 		local Success, Error = pcall(function()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Plugins"))()
+			coroutine.wrap(function()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Plugins"))()
+			end)()
+
+			coroutine.wrap(function()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/PluginsLoader"))()
+			end)()
 		end)
 
 		CheckIfSuccess(Success, Error)
