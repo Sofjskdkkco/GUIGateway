@@ -230,18 +230,6 @@ for Names, _ in Usernames do
 						end)()
 
 						coroutine.wrap(function()
-							if isfolder("VexHub/Plugins") then
-								for _, Plugin in Plugins do		
-									if isfile("VexHub/Plugins/"..Plugin.PluginName) ~= true then
-										writefile("VexHub/Plugins/"..Plugin.PluginName..".vexp", JSon:Encode(Plugin))
-									end
-								end
-							else
-								MakeVexFolder()
-							end
-						end)()
-
-						coroutine.wrap(function()
 							if isfolder("VexHub/SavedScripts") then
 								for TableNumber, _ in SavedScripts do
 									writefile("VexHub/SavedScripts/"..SavedScripts[TableNumber].ScriptName..".lua", tostring(SavedScripts[TableNumber].Script))
