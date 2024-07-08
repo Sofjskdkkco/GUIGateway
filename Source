@@ -141,7 +141,7 @@ for Names, _ in Usernames do
 
 								coroutine.wrap(function()
 									if isfile("VexHub/Plugins/RegisteredPlugins.vex") then
-										local TableOfRegisteredPlugins = loadstring(JSon:Decode(readfile("VexHub/Plugins/RegisteredPlugins.vex")))()
+										local TableOfRegisteredPlugins = JSon:Decode(tostring(readfile("VexHub/Plugins/RegisteredPlugins.vex")))
 
 										for i, v in TableOfRegisteredPlugins do
 											table.insert(RegisteredPlugins, TableOfRegisteredPlugins[i])
