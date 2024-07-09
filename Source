@@ -3,7 +3,6 @@ local Player = game:GetService("Players").LocalPlayer
 local Authorized = false
 local Errors = 0
 local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
-Message:Visible(true)
 
 local function CheckIfSuccess(Success, Error)
 	if Success then
