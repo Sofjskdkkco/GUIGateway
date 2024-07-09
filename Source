@@ -450,9 +450,10 @@ for Names, _ in Usernames do
 
 		CreateLog("white", "Loading AnimationLibrary...")
 		Message:Output("Loading AnimationLibrary...")
-		local AnimationLibrary = Table.AnimationLibrary
+		local AnimationLibrary = nil
 		local Success, Error = pcall(function()
 			Table.AnimationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/AnimationLibrary"))()
+			AnimationLibrary = Table.AnimationLibrary
 		end)
 
 		CheckIfSuccess(Success, Error)
