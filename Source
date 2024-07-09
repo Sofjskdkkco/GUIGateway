@@ -431,11 +431,10 @@ for Names, _ in Usernames do
 		local AnimationEasingStyle = Table.GuiSettings.EasingStyle
 
 		coroutine.wrap(function()
-			wait(0.05)
 			local MR = math.random(1,2)
 			if MR == 1 then
 				Logo.Image = "rbxassetid://"..Table.GuiStatus.Logo
-				wait(0.6)
+			else
 				Logo.Image = Table.GuiStatus.BuffVexHub.WithDick
 			end
 			TweenService:Create(Logo, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {ImageTransparency = 0}):Play()
