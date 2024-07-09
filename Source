@@ -47,7 +47,7 @@ for Names, _ in Usernames do
 				makefolder("VexHub/Plugins")
 				makefolder("VexHub/SavedScripts")
 
-				writefile("BuffVexHubNSFW.png", game:HttpGet("https://raw.githubusercontent.com/V31nc/VexHub-Images/main/Buff%20VexHub/Buff%20VexHub%20with%20Big%20Penis%20No%20Background%201by1.png"))
+				writefile("VexHub/BuffVexHubNSFW.png", game:HttpGet("https://raw.githubusercontent.com/V31nc/VexHub-Images/main/Buff%20VexHub/Buff%20VexHub%20with%20Big%20Penis%20No%20Background%201by1.png"))
 
 				local SettingsTable = {
 					Wallpaper = 11926598891,
