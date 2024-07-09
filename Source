@@ -332,7 +332,7 @@ for Names, _ in Usernames do
 				end)
 
 				if Success then
-					CreateLog("white", "Table manipulated!")
+					CreateLog("green", "Table manipulated!")
 					Message:Success("Table manipulated!")
 				else
 					Message:Visible(true)
@@ -450,7 +450,7 @@ for Names, _ in Usernames do
 
 		CreateLog("white", "Loading AnimationLibrary...")
 		Message:Output("Loading AnimationLibrary...")
-		local AnimationLibrary = nil
+		local AnimationLibrary = Table.AnimationLibrary
 		local Success, Error = pcall(function()
 			Table.AnimationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/AnimationLibrary"))()
 		end)
@@ -531,6 +531,8 @@ for Names, _ in Usernames do
 
 			TweenService:Create(Blur, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {Size = 0}):Play()
 			TweenService:Create(game:GetService("Workspace").CurrentCamera, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {FieldOfView = CurrentFOV}):Play()
+			wait(0.6)
+			ScreenGui:Destroy()
 
 			AnimationLibrary.AppearBackground()
 			AnimationLibrary.AppearCoreInteractions()
@@ -544,7 +546,7 @@ for Names, _ in Usernames do
 			TweenService:Create(OpenButton, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {BackgroundTransparency = 0.5}):Play()
 			TweenService:Create(OpenButton.UIScale, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Scale = 1}):Play()
 			TweenService:Create(OpenButton.UIStroke, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Transparency = 0.7}):Play()
-			TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()
+			TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()	
 		else
 			CreateLog("red", 'FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!')
 			Message:Error('FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!')
