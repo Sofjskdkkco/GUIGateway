@@ -39,6 +39,7 @@ for Names, _ in Usernames do
 
 		ScreenGui.Parent = game:GetService("CoreGui")
 		ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+		ScreenGui.IgnoreGuiInset = true
 
 		Loading.Name = "Loading"
 		Loading.Parent = ScreenGui
@@ -62,6 +63,7 @@ for Names, _ in Usernames do
 
 		Template.Name = "Template"
 		Template.Parent = Log
+		Template.AutomaticSize = Enum.AutomaticSize.XY
 		Template.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Template.BackgroundTransparency = 1.000
 		Template.BorderColor3 = Color3.fromRGB(0, 0, 0)
