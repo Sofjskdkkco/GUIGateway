@@ -3,7 +3,6 @@ local Player = game:GetService("Players").LocalPlayer
 local Authorized = false
 local Errors = 0
 local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
-Message:Visible(true)
 
 local function CheckIfSuccess(Success, Error)
 	if Success then
@@ -11,6 +10,7 @@ local function CheckIfSuccess(Success, Error)
 		CreateLog("green", "Loaded")
 	else
 		CreateLog("red", "Something went wrong while executing VexHub! Go to VexConsole to view the error")
+		Message:Visible(true)
 		Message:Error("Something went wrong while executing VexHub!")
 		Message:Error(Error)
 		Errors += 1
@@ -62,6 +62,7 @@ for Names, _ in Usernames do
 
 		Template.Name = "Template"
 		Template.Parent = Log
+		Template.AutomaticSize = Enum.AutomaticSize.XY
 		Template.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 		Template.BackgroundTransparency = 1.000
 		Template.BorderColor3 = Color3.fromRGB(0, 0, 0)
