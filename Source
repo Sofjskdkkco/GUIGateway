@@ -96,7 +96,6 @@ for Names, _ in Usernames do
 		Logo.BackgroundTransparency = 1.000
 		Logo.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		Logo.BorderSizePixel = 0
-		Logo.Image = "rbxassetid://"..Table.GuiStatus.Logo
 		Logo.Size = UDim2.new(0, 100, 0, 100)
 		Logo.Visible = false
 		Logo.ImageTransparency = 1.000
