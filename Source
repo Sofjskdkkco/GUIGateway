@@ -519,6 +519,14 @@ for Names, _ in Usernames do
 
 		CheckIfSuccess(Success, Error)
 
+		CreateLog("white", "Loading Settings...")
+		Message:Output("Loading Settings...")
+		local Success, Error = pcall(function()
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/Settings"))()
+		end)
+
+		CheckIfSuccess(Success, Error)
+
 		if Errors == 0 then
 			CreateLog("white", "VexHub Loaded!")
 			Message:Success("VexHub loaded!")
