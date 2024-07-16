@@ -198,6 +198,7 @@ for Names, _ in Usernames do
 
 				local SettingsTable = {
 					Wallpaper = "11926598891",
+					WallpaperBackgroundColor = "0, 0, 0",
 					Notifications = true,
 					GuiBackgroundColor = "255, 255, 255",
 					GuiScale = 1,
@@ -248,6 +249,7 @@ for Names, _ in Usernames do
 								local SettingsTable = JSon:Decode(readfile("VexHub/Settings.vex"))
 
 								GuiSettings.Wallpaper = SettingsTable.Wallpaper
+								GuiSettings.WallpaperBackgroundColor = SettingsTable.WallpaperBackgroundColor
 								GuiSettings.Notifications = SettingsTable.Notifications
 								GuiSettings.GuiBackgroundColor = SettingsTable.GuiBackgroundColor
 								GuiSettings.GuiScale = SettingsTable.GuiScale
@@ -363,6 +365,7 @@ for Names, _ in Usernames do
 							if isfile("VexHub/Settings.vex") then
 								local SettingsTable = {
 									Wallpaper = GuiSettings.Wallpaper,
+									WallpaperBackgroundColor = GuiSettings.WallpaperBackgroundColor,
 									Notifications = GuiSettings.Notifications,
 									GuiBackgroundColor = GuiSettings.GuiBackgroundColor,
 									GuiScale = GuiSettings.GuiScale,
