@@ -447,6 +447,40 @@ for Names, _ in Usernames do
 			TweenService:Create(Logo, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {ImageTransparency = 0}):Play()
 		end)()
 
+		coroutine.wrap(function()
+			local PlayerBadges = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/PlayerBadges"))()
+
+			if (PlayerBadges[Player.Name]) then
+				if PlayerBadges[Player.Name].ShootingStar == true then
+					Table.GuiSettings.PlayerBadges.ShootingStar = true
+				end
+
+				if PlayerBadges[Player.Name].Wrench == true then
+					Table.GuiSettings.PlayerBadges.Wrench = true
+				end
+
+				if PlayerBadges[Player.Name].Star == true then
+					Table.GuiSettings.PlayerBadges.Star = true
+				end
+
+				if PlayerBadges[Player.Name].Trophy == true then
+					Table.GuiSettings.PlayerBadges.Trophy  = true
+				end
+
+				if PlayerBadges[Player.Name].Piece == true then
+					Table.GuiSettings.PlayerBadges.Piece = true
+				end
+
+				if PlayerBadges[Player.Name].Tube == true then
+					Table.GuiSettings.PlayerBadges.Tube = true
+				end
+
+				if PlayerBadges[Player.Name].Heart == true then
+					Table.GuiSettings.PlayerBadges.Heart = true
+				end
+			end
+		end)()
+
 		Message:Output("Loading CoreFrame...")
 		CreateLog("white", "Loading CoreFrame...")
 		local Success, Error = pcall(function()
