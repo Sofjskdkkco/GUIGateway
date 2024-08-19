@@ -435,9 +435,9 @@ coroutine.wrap(function()
 
 	local MR = math.random(1,10)
 	if MR == 1 then
-		Logo.Image = "rbxassetid://"..Table.GuiStatus.Logo
-	else
 		Logo.Image = Table.GuiStatus.BuffVexHub.WithDick
+	else
+		Logo.Image = "rbxassetid://"..Table.GuiStatus.Logo
 	end
 	TweenService:Create(Logo, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {ImageTransparency = 0}):Play()
 end)()
