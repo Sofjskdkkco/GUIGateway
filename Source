@@ -433,7 +433,7 @@ coroutine.wrap(function()
 		wait()
 	until (Table.GuiStatus.BuffVexHub.WithDick) ~= nil
 
-	local MR = math.random(1,2)
+	local MR = math.random(1,10)
 	if MR == 1 then
 		Logo.Image = "rbxassetid://"..Table.GuiStatus.Logo
 	else
