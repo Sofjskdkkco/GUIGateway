@@ -2,21 +2,21 @@ local Player = game:GetService("Players").LocalPlayer
 local Errors = 0
 local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
 
-local function CheckIfSuccess(Success, Error)
-	if Success then
-		Message:Success("Loaded!")
-		CreateLog("green", "Loaded")
-	else
-		CreateLog("red", "Something went wrong while executing VexHub! Go to VexConsole to view the error")
-		Message:Error("Something went wrong while executing VexHub!")
-		Message:Error(Error)
-		Errors += 1
-	end
-end
-
-local TweenService = game:GetService("TweenService")
-
 if (writefile) and (getcustomasset) then
+	local function CheckIfSuccess(Success, Error)
+		if Success then
+			Message:Success("Loaded!")
+			CreateLog("green", "Loaded")
+		else
+			CreateLog("red", "Something went wrong while executing VexHub! Go to VexConsole to view the error")
+			Message:Error("Something went wrong while executing VexHub!")
+			Message:Error(Error)
+			Errors += 1
+		end
+	end
+	
+	local TweenService = game:GetService("TweenService")
+
 	-- Instances:
 	
 	local ScreenGui = Instance.new("ScreenGui")
