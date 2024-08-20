@@ -1,8 +1,8 @@
-local Player = game:GetService("Players").LocalPlayer
-local Errors = 0
-local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
-
 if (writefile) and (getcustomasset) then
+	local Player = game:GetService("Players").LocalPlayer
+	local Errors = 0
+	local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
+
 	local function CheckIfSuccess(Success, Error)
 		if Success then
 			Message:Success("Loaded!")
@@ -606,6 +606,7 @@ if (writefile) and (getcustomasset) then
 		Message:Error('FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!')
 	end
 else
+	local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
 	Message:Error("Incompatible Executor!\n\nYour executor cant run VexHub because it doesnt have writefile and/or getcustomasset API! Join our server at <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> to get some tips on what you should do to use VexHub!")
 	Message:Output("Checking if writefile is supported...")
 	if (writefile) then
