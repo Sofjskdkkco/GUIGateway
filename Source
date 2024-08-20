@@ -1,3 +1,13 @@
+if VexHubLoaded then
+	if (game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame) then
+		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/NotificationLibrary"))()
+
+		Notification:Create("VexHub already loaded!", "VexHub was already loaded!", 5)
+	end
+end
+
+pcall(function() getgenv().VexHubLoaded = true end)
+
 local Player = game:GetService("Players").LocalPlayer
 local Errors = 0
 local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
