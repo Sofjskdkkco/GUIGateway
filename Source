@@ -3,8 +3,8 @@ if VexHubLoaded then
 		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/NotificationLibrary"))()
 
 		Notification:Create("VexHub already loaded!", "VexHub was already loaded!", 5)
-		return
 	end
+	return
 end
 
 pcall(function() getgenv().VexHubLoaded = true end)
