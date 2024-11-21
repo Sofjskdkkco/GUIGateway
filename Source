@@ -28,6 +28,14 @@ end
 local TweenService = game:GetService("TweenService")
 
 if (writefile) then
+	if isfolder("VexHub") then
+		if loadfile("VexHub/Settings.vex") == nil or loadfile("VexHub/Favorites.vex") == nil then
+			delfolder("VexHub")
+			Message:Visible(true)
+			Message:Error('WE HAVE DETECTED THAT A VEXHUB FILE HAS BEEN CORRUPTED. WE HAVE DELETED YOUR VEXHUB FOLDER CONTAINING YOUR VEXHUB FAVORITES SETTINGS, VEXHUB SETTINGS FILE, SAVED SCRIPTS IN THE LOCALPLAYER, AND VEXHUB PLUGINS TO MAKE VEXHUB FUNCTIONAL AGAIN AND TO AVOID ERRORS. PLEASE AVOID CORRUPTING VEXHUB FILES')
+	    	end
+	end
+
 	-- Instances:
 	
 	local ScreenGui = Instance.new("ScreenGui")
