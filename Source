@@ -207,11 +207,6 @@ if (writefile) then
 			makefolder("VexHub")
 			makefolder("VexHub/Plugins")
 			makefolder("VexHub/SavedScripts")
-			makefolder("VexHub/BuffVexHub")
-	
-			writefile("VexHub/BuffVexHub/NoDick.png", game:HttpGet("https://raw.githubusercontent.com/V31nc/VexHub-Images/main/Buff%20VexHub/Buff%20VexHub%20No%20Background%201by1.png"))
-			writefile("VexHub/BuffVexHub/WithDick.png", game:HttpGet("https://raw.githubusercontent.com/V31nc/VexHub-Images/main/Buff%20VexHub/Buff%20VexHub%20with%20Big%20Penis%20No%20Background%201by1.png"))
-			writefile("VexHub/BuffVexHub/WithDickAndPreCum.png", game:HttpGet("https://raw.githubusercontent.com/V31nc/VexHub-Images/main/Buff%20VexHub/Buff%20VexHub%20with%20Big%20Penis%20and%20PreCum%20No%20Background%201by1.png"))
 	
 			local SettingsTable = {
 				Wallpaper = "11926598891",
@@ -451,13 +446,9 @@ if (writefile) then
 	local AnimationEasingStyle = Table.GuiSettings.EasingStyle
 	
 	coroutine.wrap(function()
-		repeat
-			wait()
-		until (Table.GuiStatus.BuffVexHub.WithDick) ~= nil
-	
 		local MR = math.random(1,10)
 		if MR == 1 then
-			Logo.Image = Table.GuiStatus.BuffVexHub.WithDick
+			Logo.Image = "rbxassetid://72910962397999"
 		else
 			Logo.Image = "rbxassetid://"..Table.GuiStatus.Logo
 		end
@@ -584,10 +575,6 @@ if (writefile) then
 	if Errors == 0 then
 		CreateLog("white", "VexHub Loaded!")
 		Message:Success("VexHub loaded!")
-	
-		if Logo.Image ~= "rbxassetid://14803348752" then
-			Logo.Image = Table.GuiStatus.BuffVexHub.WithDickAndPreCum
-		end
 	
 		TweenService:Create(Name, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {Size = UDim2.new(0, 0 ,0, 100)}):Play()
 		TweenService:Create(Name.UIGradient, TweenInfo.new(0.6*2, Enum.EasingStyle.Quart), {Offset = Vector2.new(-1, 0)}):Play()
