@@ -37,11 +37,11 @@ if (writefile) then
 			if readfile("VexHub/FileVersion.vex") ~= FileVersion then
 				delfolder("VexHub")
 				Message:Visible(true)
-				Message:Output("We have reseted your VexHub folder because its FileVersion is outdated")
+				Message:Information("We have reseted your VexHub folder because its FileVersion is outdated")
 			end
 		else
 			Message:Visible(true)
-			Message:Output("We have reseted your VexHub folder because it doesnt contain a FileVersion")
+			Message:Information("We have reseted your VexHub folder because it doesnt contain a FileVersion")
 			delfolder("VexHub")
 		end
 
