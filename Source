@@ -1,4 +1,4 @@
-local FileVersion = 1
+local FileVersion = "1"
 
 if VexHubLoaded then
 	if (game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame) then
