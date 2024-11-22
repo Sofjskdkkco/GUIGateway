@@ -1,3 +1,5 @@
+local FileVersion = 1
+
 if VexHubLoaded then
 	if (game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame) then
 		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/NotificationLibrary"))()
@@ -30,6 +32,18 @@ local TweenService = game:GetService("TweenService")
 if (writefile) then
 	if isfolder("VexHub") then
 		local _, SettingsFile = loadfile("VexHub/Settings.vex")
+
+		if isfile("VexHub/FileVersion.vex") then
+			if readfile("VexHub/FileVersion.vex") ~= FileVersion then
+				delfolder("VexHub")
+				Message:Visible(true)
+				Message:Output("We have reseted your VexHub folder because its FileVersion is outdated")
+			end
+		else
+			Message:Visible(true)
+			Message:Output("We have reseted your VexHub folder because it doesnt contain a FileVersion")
+			delfolder("VexHub")
+		end
 
 		if SettingsFile == nil then
 			delfolder("VexHub")
@@ -236,6 +250,8 @@ if (writefile) then
 			local RegisteredPlugins = {}
 	
 			writefile("VexHub/Plugins/RegisteredPlugins.vex", JSon:Encode(RegisteredPlugins))
+
+			writefile("VexHub/FileVersion.vex", FileVersion)
 		end
 	
 		getgenv().LoadVexFile = function()
