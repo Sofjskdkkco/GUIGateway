@@ -594,7 +594,9 @@ if (writefile) then
 	
 	CheckIfSuccess(Success, Error)
 
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Sofjskdkkco/GUIGateway/refs/heads/main/Hooks"))()
+	coroutine.wrap(function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/Sofjskdkkco/GUIGateway/refs/heads/main/Hooks"))()
+	end)()
 
 	if Errors == 0 then
 		CreateLog("white", "VexHub Loaded!")
