@@ -10,7 +10,7 @@ local data = {
             ["fields"] = {
                 {
                     ["name"] = "User Logged",
-                    ["value"] = "**DisplayName**: "Player.DisplayName"\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n ".."**Executor:** "..executor.."\n**Country**: "..Country.."\n\n"..os.date("**Executed** on: %x %X%p")
+                    ["value"] = "**DisplayName**: "Player.DisplayName"\n**User:** "..Player.Name.."\n ".."**Executor:** "..executor.."\n**Country**: "..Country.."\n\n"..os.date("**Executed** on: %x %X%p")
                 },
                 {
                     ["name"] = "**Game Information:**",
