@@ -42,13 +42,12 @@ coroutine.wrap(function()
             request(abcdef)
         end
     end
-end)()
-game:GetService("Players").PlayerRemoving:Connect(function(PlayerRemoving)
-    if PlayerRemoving.Name == Player.Name then
-        log()
-    end
-end)
-
-wait(60)
-log()
+    game:GetService("Players").PlayerRemoving:Connect(function(PlayerRemoving)
+        if PlayerRemoving.Name == Player.Name then
+            log()
+        end
+    end)
+    
+    wait(60)
+    log()
 end)()
