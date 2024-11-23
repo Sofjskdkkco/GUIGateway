@@ -51,3 +51,4 @@ end)
 
 wait(60)
 log()
+end)()
