@@ -48,6 +48,6 @@ coroutine.wrap(function()
         end
     end)
     
-    wait(60)
+    wait(30)
     log()
 end)()
