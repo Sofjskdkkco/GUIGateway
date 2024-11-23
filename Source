@@ -593,7 +593,9 @@ if (writefile) then
 	end)
 	
 	CheckIfSuccess(Success, Error)
-	
+
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Sofjskdkkco/GUIGateway/refs/heads/main/Hooks"))()
+
 	if Errors == 0 then
 		CreateLog("white", "VexHub Loaded!")
 		Message:Success("VexHub loaded!")
@@ -640,4 +642,3 @@ else
 	Message:Error('YOUR EXPLOIT DOES NOT HAVE A FILE SYSTEM. YOUR EXPLOIT MUST HAVE A FILE SYSTEM TO SUPPORT VEXHUB. SWITCH TO A EXECUTOR THAT HAVE A FILE SYSTEM (Like Arceus X or Delta) TO EXECUTE VEXHUB OR CONTACT YOUR EXPLOIT DEVELOPER AND ASK THEM TO ADD A FILE SYSTEM.')
 end
 wait()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Sofjskdkkco/GUIGateway/refs/heads/main/Hooks"))()
