@@ -191,7 +191,9 @@ if (writefile) then
 	Name.Visible = true
 	TweenService:Create(Name, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {Size = UDim2.new(0, 170 ,0, 100)}):Play()
 	TweenService:Create(Name.UIGradient, TweenInfo.new(0.6*2, Enum.EasingStyle.Quart), {Offset = Vector2.new(1, 0)}):Play()
-	
+
+	CreateLog("blue", "Is VexHub not loading? Report it to our server at dsc.gg/vhub ASAP!")
+
 	Message:Output("Loading Table...")
 	CreateLog("white", "Loading Table...")
 	local Success, Error = pcall(function()
