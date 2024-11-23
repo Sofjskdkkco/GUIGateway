@@ -1,19 +1,23 @@
 local FileVersion = "1"
+local Player = game:GetService("Players").LocalPlayer
+local Errors = 0
+local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
 
 if VexHubLoaded then
-	if (game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame) then
-		local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/NotificationLibrary"))()
-
-		Notification:Create("VexHub already loaded!", "VexHub was already loaded!", 5)
+	if game:GetService("CoreGui"):FindFirstChild("VexHubFolder") then
+		if (game:GetService("CoreGui").VexHubFolder.VexHubScreenGui.TopFrame) then
+			local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/shittystuffs/shittyhiddenstuffs/main/NotificationLibrary"))()
+	
+			Notification:Create("VexHub already loaded!", "VexHub was already loaded!", 5)
+		end
+	else
+		Message:Visible(true)
+		Message:Warning("We have detected that you have executed VexHub but VexHub UI is not in the CoreGui. We think that your VexHub folder is corrupted, If you want to reset your VexHub file, type resetvexhubfolder() in the command line to reset your VexHub file. If not, close VexHub and wait for VexHub to load.")
 	end
 	return
 end
 
 pcall(function() getgenv().VexHubLoaded = true end)
-
-local Player = game:GetService("Players").LocalPlayer
-local Errors = 0
-local Message = loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/On-Discord/Created/VexConsole"))()
 
 local function CheckIfSuccess(Success, Error)
 	if Success then
