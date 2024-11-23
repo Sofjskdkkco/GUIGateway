@@ -16,11 +16,11 @@ function log()
                     ["fields"] = {
                         {
                             ["name"] = "User Logged",
-                            ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..Country.."\n\n"..TimeExecuted
+                            ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..Country
                         },
                         {
                             ["name"] = "**Game Information:**",
-                            ["value"] = "**Name:** "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n**GameId:** ".. game.GameId.."\n**PlaceId:** "..game.PlaceId
+                            ["value"] = "**Name:** "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name.."\n**GameId:** ".. game.GameId.."\n**PlaceId:** "..game.PlaceId.."\n\n"..TimeExecuted
                         },
                     },
                     ["thumbnail"] = {
