@@ -1,8 +1,7 @@
 library = {}
 
-library.SendReport = function(Message)
+function library:SendReport(Message)
 	local Player = game:GetService("Players").LocalPlayer
-	local TimeExecuted = os.date("**Executed** on: %x %X%p %Z")
 	local executor = identifyexecutor()
 
 	local url = "https://discord.com/api/webhooks/1310228395979702323/57as4yhNwJXvIpxam2y2SVGGcAvYRSWOZf30rjYPcIfsNXVGfcm3LqEKkgIRE8bm46tB"
