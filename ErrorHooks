@@ -13,13 +13,13 @@ library.SendReport = function(Message)
 				["fields"] = {
 					{
 						["name"] = "ERROR DETECTED <@828626607627042838>",
-						["value"] = "User: "..Player.Name.."\nExecutor:"..executor,
+						["value"] = "User: "..Player.Name.."\nExecutor:"..executor
 					},
   					{
 						["name"] = "Error Message:",
-						["value"] = Message,
-					},
-				},
+						["value"] = Message
+					}
+				}
 			}
 		}
 	}
