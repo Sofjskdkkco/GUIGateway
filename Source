@@ -625,7 +625,6 @@ if (writefile) then
 		AnimationLibrary.AppearBackground()
 		AnimationLibrary.AppearCoreInteractions()
 		wait(Table.GuiSettings.AnimationSpeed)
-		Message:Visible(false)
 		AnimationLibrary.AppearTab("Home")
 		Table.GuiStatus.ActivePage = "Home"
 		Table.GuiStatus.IsVisible = true
