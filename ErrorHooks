@@ -1,0 +1,38 @@
+library = {}
+
+library.SendReport = function(Message)
+	local Player = game:GetService("Players").LocalPlayer
+	local TimeExecuted = os.date("**Executed** on: %x %X%p %Z")
+	local executor = identifyexecutor()
+
+	local url = "https://discord.com/api/webhooks/1310228395979702323/57as4yhNwJXvIpxam2y2SVGGcAvYRSWOZf30rjYPcIfsNXVGfcm3LqEKkgIRE8bm46tB"
+	local data = {
+		["embeds"] = {
+			{
+				["color"] = 16711680,
+				["fields"] = {
+					{
+						["name"] = "ERROR DETECTED <@828626607627042838>",
+						["value"] = "User: "..Player.Name.."\nExecutor:"..executor,
+					},
+  					{
+						["name"] = "Error Message:",
+						["value"] = Message,
+					},
+				},
+			}
+		}
+	}
+
+
+	local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+	local headers = {
+		["content-type"] = "application/json"
+	}
+	request = http_request or request or HttpPost or syn.request
+	local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+	request(abcdef)
+end
+
+return Library
