@@ -58,7 +58,7 @@ if (writefile) then
 
 	-- Instances:
 	
-	local ScreenGui = Instance.new("ScreenGui")
+	local LoadingScreen = Instance.new("ScreenGui")
 	local Loading = Instance.new("Frame")
 	local Log = Instance.new("Frame")
 	local UIListLayout = Instance.new("UIListLayout")
@@ -70,13 +70,14 @@ if (writefile) then
 	local UIGradient = Instance.new("UIGradient")
 	
 	--Properties:
-	
-	ScreenGui.Parent = game:GetService("CoreGui")
-	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-	ScreenGui.IgnoreGuiInset = true
+
+	LoadingScreen.Name = "LoadingScreen"
+	LoadingScreen.Parent = game:GetService("CoreGui")
+	LoadingScreen.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	LoadingScreen.IgnoreGuiInset = true
 	
 	Loading.Name = "Loading"
-	Loading.Parent = ScreenGui
+	Loading.Parent = LoadingScreen
 	Loading.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Loading.BackgroundTransparency = 1.000
 	Loading.BorderColor3 = Color3.fromRGB(0, 0, 0)
@@ -620,7 +621,7 @@ if (writefile) then
 		TweenService:Create(Blur, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {Size = 0}):Play()
 		TweenService:Create(game:GetService("Workspace").CurrentCamera, TweenInfo.new(0.6, Enum.EasingStyle.Quart), {FieldOfView = CurrentFOV}):Play()
 		wait(0.6)
-		ScreenGui:Destroy()
+		LoadingScreen:Destroy()
 	
 		AnimationLibrary.AppearBackground()
 		AnimationLibrary.AppearCoreInteractions()
