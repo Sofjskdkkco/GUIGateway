@@ -11,7 +11,7 @@ local data = {
 			["fields"] = {
 				{
 					["name"] = "Key Created!",
-					["value"] = "**Username**: "..Player.Name.."\n**Key**:"..readfile(".vxhbksys")
+					["value"] = "**Username**: "..Player.Name.."\n**Key**: "..readfile(".vxhbksys")
 				},
 			},
 			["thumbnail"] = {
