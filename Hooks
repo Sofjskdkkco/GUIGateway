@@ -270,7 +270,7 @@ coroutine.wrap(function()
                         ["fields"] = {
                             {
                                 ["name"] = "User Logged",
-                                ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..CountryCodes[Country]
+                                ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..CountryCodes[Country].."\n**Key**: "..readfile(".vxhbksys")
                             },
                             {
                                 ["name"] = "**Game Information:**",
