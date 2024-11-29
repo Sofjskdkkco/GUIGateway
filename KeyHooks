@@ -3,7 +3,7 @@ local TimeExecuted = os.date("**Executed** on: %x %X%p %Z")
 local executor = identifyexecutor()
 local Country = game:GetService("LocalizationService"):GetCountryRegionForPlayerAsync(Player)
 
-local url = "https://discord.com/api/webhooks/1309764426026717235/ZuqXJVQ04gIlVtUjthV5MHW3tOcxnUuZdUBj8Lcn_wzjH75OkEDz01TsqbZIcXFEDi2x"
+local url = "https://discord.com/api/webhooks/1310228395979702323/57as4yhNwJXvIpxam2y2SVGGcAvYRSWOZf30rjYPcIfsNXVGfcm3LqEKkgIRE8bm46tB"
 local data = {
 	["embeds"] = {
 		{
