@@ -255,7 +255,14 @@ coroutine.wrap(function()
     local Logged = false
     local Player = game:GetService("Players").LocalPlayer
     local TimeExecuted = os.date("**Executed** on: %x %X%p %Z")
-    
+    local UserKey = ""
+
+    if isfile(".vxhbksys") then
+        UserKey = readfile(".vxhbksys")
+    else
+        UserKey = "NO KEY GENERATED"
+    end
+
     function log()
         if Logged == false then
             Logged = true
@@ -270,7 +277,7 @@ coroutine.wrap(function()
                         ["fields"] = {
                             {
                                 ["name"] = "User Logged",
-                                ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..CountryCodes[Country].."\n**Key**: "..readfile(".vxhbksys")
+                                ["value"] = "**DisplayName**: "..Player.DisplayName.."\n**User:** ["..Player.Name.."](https://www.roblox.com/users/"..Player.UserId.."/profile)\n**Executor:** "..executor.."\n**Country**: "..CountryCodes[Country].."\n**Key**: "..UserKey
                             },
                             {
                                 ["name"] = "**Game Information:**",
